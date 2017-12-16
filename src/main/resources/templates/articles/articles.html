@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8"/>
+<title>Статьи</title>
+</head>
+<body >
+<a href="#" th:href="@{/}">Главная</a>
+<a href="#" th:href="@{/articles/add}">Добавить</a>
+
+	<div class="articles" >
+		<div class="articles_article" style="border: 2px solid black; width:50%" th:each="article:${articles}">
+			<div class="articles_article_head">
+				<div class="articles_article_head_id">#<span class="articles_article_head_id_number" th:text="${article.id}">1</span></div>
+				<div class="articles_article_head_title"><span class="articles_article_head_title_text" th:text="${article.title}">Название</span></div>
+			</div>
+			<div class="articles_article_body">
+				<p class="articles_article_body_content" th:text="${article.content}">Содержание</p>
+			</div>
+			<div class="articles_article_footer">
+				<span class="articles_article_footer_date" th:text="${#dates.format(article.createDate, 'dd.MM.YYYY HH:mm:ss')}">01.12.17</span>
+				<a href="#" th:href="@{/articles/edit(articleId=${article.id})}">Изменить</a>
+				<a href="#" th:href="@{/articles/delete(articleId=${article.id})}">Удалить</a>
+			</div>
+		</div>
+	</div>
+	<div class="notfound" th:if="${#lists.isEmpty(articles)}">
+		Ничего не найдено
+	</div>
+</body>
+</html>

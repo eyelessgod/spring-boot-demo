@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8"/>
+<title>Редактирование статьи</title>
+</head>
+<body>
+<a href="#" th:href="@{/}">Главная</a>
+<a href="#" th:href="@{/articles}">Статьи</a>
+<form method="post" action="#" th:action="@{/articles/add}" th:object="${article}">
+<input type="hidden" th:field="*{id}"/>
+<label for="title">Название:</label>
+<input id="title" placeholder="Название статьи" type="text" th:field="*{title}"/>
+<br/><textarea placeholder="Текст статьи" th:field="*{content}" style="margin: 0px; width: 239px; height: 45px;"></textarea>
+<br/><input type="submit" value="Создать" th:value="*{id}>0?'Изменить':'Создать'" /><input type="reset" value="Очистить"/>
+</form>
+</body>
+</html>
